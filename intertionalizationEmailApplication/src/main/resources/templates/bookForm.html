@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create book form</title>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Create book form</h1>
+
+<!--/*@thymesVar id="Person" type="com.example.validForm.Person"*/-->
+<form method="POST" th:action="@{/create/book}" th:object="${book}">
+  <h1>Create Book</h1>
+  <div th:if="${#fields.hasErrors()}">
+          <span class="validationError">
+             Please correct the problems below and resubmit.
+          </span>
+  </div>
+  <label for="title">Title:</label>
+  <input type="text" th:field="*{title}"/>
+
+  <span class="validationError"
+        th:if="${#fields.hasErrors('title')}"
+        th:errors="*{title}">Name Error
+        </span>
+  <br/>
+
+  <label for="ISBN">ISBN:</label>
+  <input type="text" th:field="*{ISBN}"/>
+
+  <span class="validationError"
+        th:if="${#fields.hasErrors('ISBN')}"
+        th:errors="*{ISBN}">Age Error
+        </span>
+  <br/>
+
+  <label for="name">Name:</label>
+  <input type="text" th:field="*{author.name}"/>
+
+  <span class="validationError"
+        th:if="${#fields.hasErrors('author.name')}"
+        th:errors="*{author.name}">
+        </span>
+  <br/>
+
+<!--  <label for="yob">yob:</label>-->
+<!--  <input type="text" th:field="*{author.yob}"/>-->
+
+<!--  <span class="validationError"-->
+<!--        th:if="${#fields.hasErrors('author.yob')}"-->
+<!--        th:errors="*{author.yob}">-->
+<!--        </span>-->
+<!--  <br/>-->
+
+  <input type="submit" value="Submit"/>
+</form>
+
+
+</body>
+</html>
